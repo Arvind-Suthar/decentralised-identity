@@ -1,10 +1,6 @@
-// Import the Web3 library
-//const Web3 = require('web3');
 
-// Connect to an Ethereum node using Web3
 const web3 = new Web3('http://localhost:7545');
 
-// Define the ABI (Application Binary Interface) of the contract
 const contractAbi = [
   {
     "anonymous": false,
@@ -178,8 +174,7 @@ const contractAbi = [
   }
 ];
 
-// Define the contract address
-const contractAddress = '0x3f120A76C56910bC1F79b3ec3c395c6D069425f9'; // Replace with the contract address
+const contractAddress = '0x7e6d6DeDFa8d90BE3397B8A73e05B5Dd493E76e3';
 
 // Create a contract instance
 const contract = new web3.eth.Contract(contractAbi, contractAddress);
@@ -241,6 +236,11 @@ async function retrieveIdentity(event) {
     }
 }
 
-// Add event listeners to forms
-document.getElementById('store-form').addEventListener('submit', storeIdentity);
-document.getElementById('retrieve-form').addEventListener('submit', retrieveIdentity);
+if(document.getElementById('store-form')){
+  console.log('tf')
+  document.getElementById('store-form').addEventListener('submit', storeIdentity);
+}
+if(document.getElementById('retrieve-form')){
+  document.getElementById('retrieve-form').addEventListener('submit', retrieveIdentity);
+}
+

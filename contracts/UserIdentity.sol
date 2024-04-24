@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 contract IdentityManagement {
-    // Define a User struct to hold user information
+
     struct User {
         string name;
         uint age;
@@ -12,12 +12,9 @@ contract IdentityManagement {
         bool isRegistered;
     }
 
-    // Mapping from user addresses to User structs
     mapping(address => User) public users;
-    // Mapping from Aadhaar number to user address
     mapping(string => address) public aadharToUserAddress;
 
-    // Event emitted when identity information is stored
     event IdentityStored(address indexed userAddress, string name, uint age, string aadharNumber, string homeAddress);
 
     // Function to store identity information
@@ -28,12 +25,10 @@ contract IdentityManagement {
         // Hash the passcode
         bytes32 passcodeHash = keccak256(abi.encodePacked(passcode));
 
-        // Store the identity information in the contract
         users[msg.sender] = User(name, age, aadharNumber, homeAddress, passcodeHash, true);
         // Associate the Aadhaar number with the user address
         aadharToUserAddress[aadharNumber] = msg.sender;
 
-        // Emit the event for storing identity information
         emit IdentityStored(msg.sender, name, age, aadharNumber, homeAddress);
     }
 
