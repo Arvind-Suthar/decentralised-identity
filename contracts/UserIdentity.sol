@@ -10,6 +10,7 @@ contract IdentityManagement {
         string homeAddress; // Residential address of the user
         bytes32 passcodeHash; // Hashed passcode for protection
         bool isRegistered;
+        string test;
     }
 
     mapping(address => User) public users;
